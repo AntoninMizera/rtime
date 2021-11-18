@@ -17,11 +17,13 @@ input.onButtonPressed(Button.B, () => {
 input.onButtonPressed(Button.A, playToneForInterval);
 
 input.onLogoEvent(TouchButtonEvent.Touched, () => {
+    if (interval === 0) return;
     startTime = control.millis();
-    basic.showIcon(IconNames.House);
+    basic.showIcon(IconNames.House, 0);
 });
 
 input.onLogoEvent(TouchButtonEvent.Released, () => {
+    if (interval === 0) return;
     const diffTime = control.millis() - startTime;
     const intervalRatio = diffTime / interval;
 
