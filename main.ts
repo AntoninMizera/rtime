@@ -33,11 +33,7 @@ input.onLogoEvent(TouchButtonEvent.Released, () => {
 
     // Give the user a somewhat good tolerance of 90%-110%,
     // just in case.
-    if (intervalRatio >= .9 && intervalRatio <= 1.1) {
-        basic.showIcon(IconNames.Yes);
-        music.playTone(Note.CSharp, 1000);
-        basic.clearScreen();
-    } else if (intervalRatio < .9) {
+    if (intervalRatio < .9) {
         basic.showLeds(
             `. . # . .
              . . # . .
@@ -60,6 +56,10 @@ input.onLogoEvent(TouchButtonEvent.Released, () => {
 
         // A string is shown instead, as I believe it would certainly be more 
         // helpful than plotting a graph that tells the user nothing.
-        basic.showString(`+${Math.roundWithPrecision((diffTime - interval) / 1000, 2)}s`);
+        basic.showString(`+${Math.roundWithPrecision((diffTime - interval) / 1000, 2)}`);
+    } else {
+        basic.showIcon(IconNames.Yes);
+        music.playTone(Note.CSharp, 1000);
+        basic.clearScreen();
     }
 });
